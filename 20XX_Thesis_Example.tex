@@ -1,0 +1,44 @@
+% !TEX engine = uplatex
+% !TEX producer = dvipdfmx
+% !TEX outputDirectory = build
+% !TEX moveResultToSourceDirectory = false
+\documentclass[10ptj,a4j,dvipdfmx,uplatex]{jsarticle}
+% \documentclass[10ptj,a4j,fleqn,dvipdfmx,uplatex]{jsarticle} % 数式左寄せ
+\usepackage{onolabthesis}
+\graphicspath{{fig/}}
+
+\degree{\master}% \bachelor, \master, or \doctor
+\titleJP{小野研究室 学位論文 テンプレート}
+\titleEN{Ono Laboratory Thesis Template}
+\dept{東京都立大学大学院\\システムデザイン研究科\\情報科学域 博士前期課程}
+\author{中嶋 大志}
+\teacher{小野 順貴 教授}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\pagestyle{plain}
+\pagenumbering{roman}
+\setcounter{page}{1}
+\input{sections/00-abstract}
+\newpage
+\tableofcontents
+
+\listoffigures
+\listoftables
+
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{sections/01-introduction}
+\input{sections/02-howtouse}
+\input{sections/03-points}
+
+\newpage
+\bibliography{bib/conf_abrv_full,bib/ref}
+\newpage
+\bibliographypubs{bib/conf_abrv_full,bib/pub}
+
+\end{document}

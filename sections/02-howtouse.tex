@@ -1,0 +1,80 @@
+%!TEX root = ../20XX_Thesis_Example.tex
+\newcommand{\TeXLive}{\TeX{}Live}
+\section{使い方}\label{sec:howtouse}
+\subsection{動作環境}\label{subsec:requirements}
+\TeXLive{}のup\LaTeX{}を使用しています．
+\TeXLive{}のインストールは\cite{Okumura:2020:LaTeX,TeXWiki}などを参考にしてください．
+
+\subsection{ファイル構成}
+この例では次のようにファイルを分割しています．
+\begin{itemize}
+  \item \texttt{bib/}: 参考文献用のbibtexファイル
+    \begin{itemize}
+      \item \texttt{conf\_abrv\_cap.bib}: 会議名を略称で書くためのマクロ．学位論文ではこれは使わないでください．ASJなどスペースの限られた論文を書く時のためにこのリポジトリでも公開しています．
+      \item \texttt{conf\_abrv\_full.bib}: 会議名を正式名称で書くためのマクロ
+      \item \texttt{pub.bib}: 発表文献用
+      \item \texttt{ref.bib}: 参考文献用
+    \end{itemize}
+  \item \texttt{build/}: pdfやその他中間ファイルが出力されるディレクトリ
+  \item \texttt{fig/}: 図
+  \item \texttt{sections/}: 節ごとのTeXファイル
+    \begin{itemize}
+      \item \texttt{00-abstract.tex}
+      \item \texttt{01-introduction.tex}
+      \item \texttt{02-howtouse.tex}
+      \item \texttt{03-points.tex}
+    \end{itemize}
+  \item \texttt{20XX\_Thesis\_Example.tex}: 原稿本体
+  \item \texttt{README.md}
+  \item \texttt{latexmkrc}: latexmk設定ファイル（後述）
+  \item \texttt{onolabthesis.sty}: 本テンプレート用スタイルファイル
+\end{itemize}
+会議論文や実験レポートなど短い文書であればここまで細かく分割しなくてもよいですが，ジャーナル論文や学位論文のように内容が多い文書を書くときはこのようにファイルを分割しておくと便利です．
+初めて\LaTeX{}で原稿を書く学生はすべてのファイルを同じディレクトリに置くことが多いのですが，せめて図くらいは分けましょう．
+ファイルを分割しないと，\LaTeX{}は中間ファイルを大量に生成するため，ディレクトリ内のファイルの見通しがとても悪くなります．
+
+\subsection{コンパイル}
+
+\subsubsection{latexmk}
+\TeXLive{}が正しくインストールされていれば，\texttt{latexmk}コマンドを実行するのが一番簡単です．
+同じディレクトリの\texttt{latexmkrc}というファイルで「コンパイラはどれにするか，dviをpdfに変換するコマンドはどれにするか，生成されたpdfをどこに保存するか」などを設定しています．
+LinuxまたはmacOSであればターミナルで\texttt{latexmk -r latexmkrc}と実行するだけで\texttt{build}ディレクトリにpdfが生成されます．
+Windowsは次で説明するAtomを用いた方法が簡単かつTeX Worksより便利だと思います．
+
+\subsubsection{atom-latex}
+以下を参考にしてください．
+\begin{itemize}
+  \item \url{https://atom.io/packages/atom-latex}
+  \item \url{https://qiita.com/adshidtadka/items/edf3267571f37fccdcbf}
+\end{itemize}
+\texttt{sections}以下の各ファイル先頭に追加している\texttt{\% !TEX root = ../20XX\_Thesis\_Example.tex}というコメントは，このatom-latexに対応するためのものです．
+
+\subsection{表紙}
+プリアンブルで次のように書き，文書内で\verb|\maketitle|コマンドを実行すると表紙が作成されます．
+\begin{verbatim}
+\degree{\master}
+\titleJP{小野研究室 学位論文 テンプレート}
+\titleEN{Ono Laboratory Thesis Template}
+\dept{東京都立大学大学院\\システムデザイン研究科\\情報科学域 博士前期課程}
+\author{中嶋 大志}
+\teacher{小野 順貴 教授}
+\date{\today}
+\end{verbatim}
+\verb|\degree|は卒論であれば\verb|\bachelor|，修論であれば\verb|\master|，博論であれば\verb|\doctor|としてください．
+もちろん，タイトル，著者，指導教員，日付は適宜変更してください．
+
+\subsection{参考文献・発表文献}
+参考文献はbibtexを用いて出力しています．
+また，参考文献とは別に，発表文献というリストも作って出力しています．
+
+参考文献は\verb|\cite|コマンドで引用した文献のみが出力されます．
+
+発表文献は\verb|bib/pub.bib|内のすべての文献を出力されます．
+
+bibtexを用いると，文書内で次のように書くだけで参考文献が出力できます．
+\begin{verbatim}
+\bibliography{bib/conf_abrv_full,bib/ref}
+\bibliographypubs{bib/conf_abrv_full,bib/pub}
+\end{verbatim}
+\verb|bib/conf_abrv_full|を\verb|bib/conf_abrv_cap|に変更すると，会議名が略称に変更されます．
+会議論文などを書く際に活用ください．
