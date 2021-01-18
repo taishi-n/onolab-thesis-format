@@ -7,8 +7,14 @@
   1. `20XX_Thesis_Example.tex` を開く
   2. エンジンを `upLaTeX(ptex2pdf)` に指定する
   3. タイプセットする
-- [VSCode + LaTeX](https://note.com/ojk/n/n6c8f6a30b67a)
-- [Atom + LaTeX](http://www.slis.tsukuba.ac.jp/~fujisawa.makoto.fu/cgi-bin/wiki/index.php?TexLive%2BAtom)
+- VSCode
+  1. LaTeX の設定をする (参考: https://note.com/ojk/n/n6c8f6a30b67a)
+  2. `20XX_Thesis_Example.tex` を開く
+  3. タイプセットする
+- Atom + LaTeX
+  1. LaTeX の設定をする (参考: http://www.slis.tsukuba.ac.jp/~fujisawa.makoto.fu/cgi-bin/wiki/index.php?TexLive%2BAtom)
+  2. `20XX_Thesis_Example.tex` を開く
+  3. タイプセットする
 
 #### 漢字やカタカナが表示されない場合
 `onolabthesis.sty` の28行目
@@ -19,9 +25,12 @@
 原因は調査中です．
 
 ### Linux/macOS
+ターミナルで次を実行
 ```
 latexmk -r latexmkrc
 ```
+
+上に書いた VSCode, Atom も Windows の場合と同様にできます
 
 ## ファイル構成
 - `bib/`: bibtexファイル
